@@ -1,0 +1,4 @@
+This repository is for my teacher work at Algorithmics. It is made for the students project work with the students. 
+It uses PyQt5 library and it's tools. It has 2 boxes:
+  1. A Question box with 4 Radio buttons as possible markable answers
+  2. A Answer box with the answer being shown on the screen with a Result if the user is Correct or Incorrect
