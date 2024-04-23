@@ -40,8 +40,13 @@ RadioGroupBox.setLayout(layout_ans1)
 
 # Create a results panel
 AnsGroupBox = QGroupBox("Test result")
-lb_Result = QLabel('Are you correct or not?') # “Correct” or “Incorrect” text will be here
-lb_Correct = QLabel('the answer will be here!') # correct answer text will be written here
+lb_Result = QLabel('are you correct or not?')
+lb_Correct = QLabel('the answer will be here!')
+
+layout_res = QVBoxLayout()
+layout_res.addWidget(lb_Result, alignment=(Qt.AlignLeft | Qt.AlignTop))
+layout_res.addWidget(lb_Correct, alignment=Qt.AlignHCenter, stretch=2)
+AnsGroupBox.setLayout(layout_res)
 
 
 layout_res = QVBoxLayout()
