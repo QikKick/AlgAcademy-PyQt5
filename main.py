@@ -1,5 +1,9 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QGroupBox, QRadioButton, QPushButton, QLabel
+from PyQt5.QtWidgets import (QApplication, QWidget,
+                             QHBoxLayout, QVBoxLayout,
+                             QGroupBox, QRadioButton,
+                             QPushButton, QLabel,
+                             QButtonGroup)
 
 
 app = QApplication([])
@@ -20,6 +24,12 @@ rbtn_2 = QRadioButton('---------')
 rbtn_3 = QRadioButton('---------')
 rbtn_4 = QRadioButton('---------')
 
+
+RadioGroup = QButtonGroup()
+RadioGroup.addButton(rbtn_1)
+RadioGroup.addButton(rbtn_2)
+RadioGroup.addButton(rbtn_3)
+RadioGroup.addButton(rbtn_4)
 
 
 
@@ -78,10 +88,31 @@ def show_result():
     AnsGroupBox.show()
     btn_OK.setText('Next question')
 
+def show_question():
+    RadioGroupBox.show() # Ijungiam atgal klausimus
+    AnsGroupBox.hide() # isjungiam atskymu lenta
+    btn_OK.setText('Answer') # Pakeiciam mygtuka jog rodytu Answer o ne ok
+    RadioGroup.setExclusive(False)
+    rbtn_1.setChecked(False)
+    rbtn_2.setChecked(False)
+    rbtn_3.setChecked(False)
+    rbtn_4.setChecked(False)
+    RadioGroup.setExclusive(True)  # Nustatome Atsakymu pasirinkima jog butu tuscia
 
+def test():
+    if 'Answer' == btn_OK.text():
+        show_result()
+    else:
+        show_question()
+
+
+window = QWidget()
 window.setLayout(layout_card)
+window.setWindowTitle('Memo Card')
+btn_OK.clicked.connect(test) # check that the answer panel appears when the button is pressed
 window.show()
 app.exec()
+
 
 
 
