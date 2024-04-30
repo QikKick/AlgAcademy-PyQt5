@@ -3,7 +3,19 @@ from PyQt5.QtWidgets import (QApplication, QWidget,
                              QHBoxLayout, QVBoxLayout,
                              QGroupBox, QRadioButton,
                              QPushButton, QLabel,
-                             QButtonGroup)
+                             QButtonGroup)      # Si dalis yra atsakinga uz PyQt5 Biblioteka bei PyQt5 funkcijas ir Skirtingus dizainus
+from random import shuffle
+
+
+class Question():
+    ''' Vieta skirta klausimo sudarymui, atpazinimui teisingo bei neteisingo atsakymo.'''
+
+    def __init__(self, question, right_answer, wrong1, wrong2, wrong3):
+        self.question = question
+        self.right_answer = right_answer
+        self.wrong1 = wrong1
+        self.wrong2 = wrong2
+        self.wrong3 = wrong3
 
 
 app = QApplication([])
@@ -52,6 +64,13 @@ lb_Result = QLabel('Are you correct or not?') # “Correct” or “Incorrect”
 lb_Correct = QLabel('the answer will be here!') # correct answer text will be written here
 
 
+
+layout_res = QVBoxLayout()
+layout_res.addWidget(lb_Result, alignment=(Qt.AlignLeft | Qt.AlignTop))
+layout_res.addWidget(lb_Correct, alignment=Qt.AlignHCenter, stretch=2)
+AnsGroupBox.setLayout(layout_res)
+
+
 layout_line1 = QHBoxLayout() # question
 layout_line2 = QHBoxLayout() # answer options or test results
 layout_line3 = QHBoxLayout() # “Answer” button
@@ -59,6 +78,8 @@ layout_line3 = QHBoxLayout() # “Answer” button
 
 layout_line1.addWidget(lb_Question, alignment=(Qt.AlignHCenter | Qt.AlignVCenter))
 layout_line2.addWidget(RadioGroupBox)
+layout_line2.addWidget(AnsGroupBox)
+AnsGroupBox.hide()
 
 
 layout_line3.addStretch(1)
