@@ -120,6 +120,33 @@ def show_question():
     rbtn_4.setChecked(False)
     RadioGroup.setExclusive(True)  # Nustatome Atsakymu pasirinkima jog butu tuscia
 
+answers = [rbtn_1, rbtn_2, rbtn_3,rbtn_4]
+
+def ask(q: Question):
+    '''This function writes the value of the question and answers in the corresponding widgets. The answer options are distributed randomly. '''
+    shuffle(answers)
+    answers[0].setText(q.right_answer)
+    answers[1].setText(q.wrong1)
+    answers[2].setText(q.wrong2)
+    answers[3].setText(q.wrong3)
+    lb_Question.setText(q.question)
+    lb_Correct.setText(q.right_answer)
+    show_question()
+
+
+def show_correct(res):
+    lb_Result.setText(res)
+    show_result()
+
+
+def check_answer():
+    if answers[0].isChecked():
+        show_correct('Correct! Malacius!')
+    else:
+        if answers[1].isChecked() or answers[2].isChecked() or answers[3].isChecked():
+            show_correct('Incorrect! Eik mokinkis!')
+
+
 def test():
     if 'Answer' == btn_OK.text():
         show_result()
@@ -130,6 +157,9 @@ def test():
 window = QWidget()
 window.setLayout(layout_card)
 window.setWindowTitle('Memo Card')
+
+q = Question('Select the most appropriate English name for the programming concept to store some data', 'variable', 'variation','cesnakas','Pinigenai')
+
 btn_OK.clicked.connect(test) # check that the answer panel appears when the button is pressed
 window.show()
 app.exec()
